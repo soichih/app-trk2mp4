@@ -12,7 +12,7 @@ singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt \
 mkdir -p output
 
 singularity exec --nv -e docker://brainlife/blender:2.82 \
-    blender empty.blend --noaudio --background --python run.py
+    blender -noaudio --background empty.blend --python run.py
 
 #ffmpeg -framerate 24 -i output/frame.%d.png output/movie.mp4
 #ffmpeg -framerate 24 -i output/frame.%d.png -c:v libaom-av1 -strict -2 output.mkv
