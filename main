@@ -9,6 +9,8 @@ echo $FREESURFER_LICENSE > license.txt
 singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt \
     docker://brainlife/freesurfer-mini:7.1.1 ./convert.sh 
 
+mkdir -p output
+
 singularity exec --nv -e docker://brainlife/blender:2.82 \
     blender empty.blend --noaudio --background --python run.py
 

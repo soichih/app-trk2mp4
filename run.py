@@ -109,7 +109,7 @@ bundles_to_animate = [ 16, 17 ]
 random.seed(12) #for color
 
 print("loading track.trk")
-trk = nibabel.streamlines.load(config["trk"])
+trk = nibabel.streamlines.load(config["track"])
 sdata = trk.tractogram.data_per_streamline    
 
 print("loading right pial surfaces")
