@@ -11,6 +11,12 @@ import colorsys
 import os
 import json
 
+
+#EEVEE needs display .. so let's try Xvfb (it might be slow..)
+from xvfbwrapper import Xvfb
+vdisplay = Xvfb()
+vdisplay.start()
+
 with open('config.json') as config_json:
     config = json.load(config_json)
 
