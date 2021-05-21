@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+set -x
+
+[ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
+echo $FREESURFER_LICENSE > license.txt
+
+singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt \
+    docker://brainlife/freesurfer-mini:7.1.1 ./convert.sh 
+
+singularity exec --nv -e docker://brainlife/blender:2.82 \
+    blender empty.blend --noaudio --background --python run.py
+
+#ffmpeg -framerate 24 -i output/frame.%d.png output/movie.mp4
+#ffmpeg -framerate 24 -i output/frame.%d.png -c:v libaom-av1 -strict -2 output.mkv
